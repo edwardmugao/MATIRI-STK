@@ -4,162 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>St. Orsola Hospital · M-PESA STK Push</title>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  body {
-    background: linear-gradient(145deg, #e2ecf5 0%, #d1dee9 100%);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    padding: 24px 16px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .container {
-    max-width: 560px;
-    width: 100%;
-    background: white;
-    border-radius: 24px;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
-    overflow: hidden;
-  }
-
-  .header {
-    background: #0b3b2f;
-    color: white;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .header h1 {
-    font-size: 1.5rem;
-  }
-
-  .header p {
-    font-size: 0.8rem;
-    opacity: 0.8;
-  }
-
-  .form {
-    padding: 20px;
-  }
-
-  label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-top: 12px;
-    display: block;
-    color: #1a5d4b;
-  }
-
-  .input-group {
-    position: relative;
-    margin-top: 6px;
-  }
-
-  .icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1rem;
-    color: gray;
-  }
-
-  input, select {
-    width: 100%;
-    padding: 14px 14px 14px 42px;
-    border: 1px solid #ddd;
-    border-radius: 14px;
-    outline: none;
-    font-size: 0.95rem;
-  }
-
-  input:focus, select:focus {
-    border-color: #1f8a4d;
-    box-shadow: 0 0 0 3px rgba(31,138,77,0.2);
-  }
-
-  .buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  button {
-    flex: 1;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    font-weight: 700;
-  }
-
-  .stk {
-    background: #1f8a4d;
-    color: white;
-  }
-
-  .cancel {
-    background: #eee;
-    color: #b91c1c;
-  }
-  .stk-btn {
-  background: linear-gradient(135deg, #00c853, #009624);
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 6px 15px rgba(0, 200, 83, 0.3);
-  transition: all 0.3s ease;
-}
-
-.stk-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 200, 83, 0.4);
-}
-
-.stk-btn:active {
-  transform: scale(0.98);
-}
-
-.arrow {
-  font-size: 18px;
-  transition: transform 0.3s ease;
-}
-
-.stk-btn:hover .arrow {
-  transform: translateX(5px);
-}
-
-  /* popup */
-  .popup {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #1f8a4d;
-    color: white;
-    padding: 12px 16px;
-    border-radius: 12px;
-    display: none;
-    font-size: 0.85rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -183,7 +28,10 @@
         </div>
       
         <h1>St. Orsola Hospital</h1>
-        <p>Matiri · Mission Healthcare STK System</p>
+        <p>Matiri · Mission Healthcare</p>
+        <p style="display:inline-block;padding:6px 14px;background:rgba(245, 245, 7, 0.15);border:1px solid #d4af37;color:#051813;font-weight:700;border-radius:20px;font-size:12px;letter-spacing:1px;text-transform:uppercase;text-align:center;">
+            Secure M-PESA STK Payment System
+          </p>
       </div> 
 
   <div class="form">
