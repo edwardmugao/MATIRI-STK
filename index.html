@@ -112,6 +112,39 @@
     background: #eee;
     color: #b91c1c;
   }
+  .stk-btn {
+  background: linear-gradient(135deg, #00c853, #009624);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 15px rgba(0, 200, 83, 0.3);
+  transition: all 0.3s ease;
+}
+
+.stk-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 200, 83, 0.4);
+}
+
+.stk-btn:active {
+  transform: scale(0.98);
+}
+
+.arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.stk-btn:hover .arrow {
+  transform: translateX(5px);
+}
 
   /* popup */
   .popup {
@@ -191,7 +224,9 @@
     </div>
 
     <div class="buttons">
-      <button class="stk" onclick="stkPush()">STK PUSH</button>
+        <button class="stk-btn" onclick="stkPush()">
+            📱 STK PUSH <span class="arrow">→</span>
+          </button>
       <button class="cancel" onclick="resetForm()">CANCEL</button>
     </div>
 
