@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>St. Orsola Hospital · M-PESA STK Push | Mission Healthcare</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: linear-gradient(145deg, #e2ecf5 0%, #d1dee9 100%);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    padding: 24px 16px;
+    min-height: 100vh;
+  }
+
+  /* modern card container */
+  .container {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.98);
+    border-radius: 2rem;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0,0,0,0.02);
+    overflow: hidden;
+    backdrop-filter: blur(0px);
+    transition: transform 0.2s ease;
+  }
+
+  /* header with brand */
+  .brand-header {
+    background: #0b3b2f;
+    padding: 1.5rem 1.5rem 1.2rem;
+    text-align: center;
+    color: white;
+    border-bottom: 3px solid #f5b042;
+  }
+
+  .logo-svg {
+    display: inline-flex;
+    background: white;
+    border-radius: 60px;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+
+  .brand-header h1 {
+    font-size: 1.7rem;
+    letter-spacing: -0.3px;
+    font-weight: 700;
+    margin: 8px 0 2px;
+  }
+
+  .brand-header .tagline {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+
+  .badge-mpesa {
+    display: inline-block;
+    background: #00a859;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 10px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  /* form section */
+  .form-card {
+    padding: 1.8rem 1.8rem 1.5rem;
+  }
+
+  .input-field {
+    margin-bottom: 1.2rem;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1a5d4b;
+    margin-bottom: 6px;
+  }
+
+  label span {
+    font-size: 1rem;
+  }
+
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-group .field-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 1.2rem;
+    pointer-events: none;
+    color: #6c757d;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 14px 16px 14px 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    color: #1e2a32;
+  }
+
+  select {
+    padding-left: 44px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%234b5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+  }
+
+  input:focus, select:focus {
+    border-color: #2c7a5e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+  }
+
+  /* button group */
+  .action-buttons {
+    display: flex;
+    gap: 14px;
+    margin: 28px 0 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px 0;
+    border: none;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s all ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #f1f5f9;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .btn-stk {
+    background: #1f8a4d;
+    color: white;
+    box-shadow: 0 4px 8px rgba(31, 138, 77, 0.3);
+  }
+
+  .btn-stk:hover {
+    background: #0f6b3a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 18px -6px rgba(31, 138, 77, 0.5);
+  }
+
+  .btn-cancel {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #b91c1c;
+  }
+
+  .btn-cancel:hover {
+    background: #fee2e2;
+    border-color: #f87171;
+    transform: translateY(-1px);
+  }
+
+  /* live feed section */
+  .feed-section {
+    background: #f9fdfb;
+    border-top: 1px solid #e0ede6;
+    padding: 1.2rem 1.8rem 1.5rem;
+  }
+
+  .feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .feed-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0b3b2f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tx-badge {
+    background: #d1fae5;
+    border-radius: 40px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #0b5e42;
+  }
+
+  .tx-list {
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .tx-item {
+    background: white;
+    border-radius: 20px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 4px solid #2c7a5e;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tx-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: baseline;
+    flex: 2;
+  }
+
+  .tx-name {
+    font-weight: 700;
+    color: #0f2c24;
+  }
+
+  .tx-dept {
+    background: #eef3fc;
+    padding: 2px 8px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #226653;
+  }
+
+  .tx-phone {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #4b5563;
+  }
+
+  .tx-amount {
+    font-weight: 800;
+    color: #1f8a4d;
+    background: #e6f4ea;
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  .tx-code {
+    font-family: monospace;
+    background: #f1f3f4;
+    padding: 2px 8px;
+    border-radius: 14px;
+    font-size: 0.7rem;
+    letter-spacing: 0.3px;
+  }
+
+  .tx-time {
+    font-size: 0.65rem;
+    color: #6c757d;
+    white-space: nowrap;
+  }
+
+  /* toast notification - modern */
+  .toast-notify {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #1e293b;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 35, 30, 0.95);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 12px 25px -8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .toast-notify.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* empty state */
+  .empty-feed {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
+
+  /* scroll */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2c7a5e;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 500px) {
+    .container {
+      border-radius: 1.5rem;
+    }
+    .form-card {
+      padding: 1.2rem;
+    }
+    .feed-section {
+      padding: 1rem;
+    }
+    .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tx-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="brand-header">
+    <div class="logo-svg">
+      <svg width="44" height="44" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="46" fill="#1f8a4d" stroke="#f5b042" stroke-width="2"/>
+        <path d="M32 50 H68 M50 32 V68" stroke="white" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="6" fill="white"/>
+      </svg>
+    </div>
+    <h1>St. Orsola Hospital</h1>
+    <div class="tagline">Matiri · Mission Healthcare</div>
+    <div class="badge-mpesa">🔐 SECURE STK PUSH | M-PESA</div>
+  </div>
+
+  <div class="form-card">
+    <form id="paymentForm" onsubmit="return false;">
+      <div class="input-field">
+        <label><span>👤</span> Full name</label>
+        <div class="input-group">
+          <span class="field-icon">📝</span>
+          <input type="text" id="fullName" placeholder="  --- --- " autocomplete="name">
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label><span>📱</span> M-PESA phone number</label>
+        <div class="input-group">
+          <span class="field-icon">🇰🇪</span>
+          <input type="tel" id="phoneNumber" placeholder="07XX XXX XXX" autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label><span>🏥</span> Department</label>
+        <div class="input-group">
+          <span class="field-icon">🏨</span>
+          <select id="department">
+            <option value="Outpatient">Outpatient Clinic</option>
+            <option value="Inpatient">Inpatient Ward</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Laboratory">Diagnostic Lab</option>
+            <option value="Maternity">Maternity & Child</option>
+            <option value="Emergency">Emergency & Trauma</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label><span>💰</span> Amount (KES)</label>
+        <div class="input-group">
+          <span class="field-icon">💳</span>
+          <input type="number" id="amountDue" placeholder=" 000" step="1" min="10">
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button type="button" class="btn btn-stk" id="stkPushBtn">
+          <span>📲</span> STK PUSH
+        </button>
+        <button type="button" class="btn btn-cancel" id="cancelBtn">
+          <span>✖</span> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="feed-section">
+    <div class="feed-header">
+      <h3>📋 Live transaction feed</h3>
+      <span class="tx-badge">Real‑time STK simulator</span>
+    </div>
+    <div id="transactionFeed" class="tx-list">
+      <!-- initial demo transactions -->
+      <div class="tx-item">
+        <div class="tx-details">
+          <span class="tx-name">James Mwangi</span>
+          <span class="tx-dept">Pharmacy</span>
+          <span class="tx-phone">254798765432</span>
+          <span class="tx-amount">KES 890</span>
+          <span class="tx-code">MP3KJ12</span>
+        </div>
+        <div class="tx-time">🕒 11:42 AM</div>
+      </div>
+      <div class="tx-item">
+        <div class="tx-details">
+          <span class="tx-name">Lena Wanjiku</span>
+          <span class="tx-dept">Outpatient</span>
+          <span class="tx-phone">254712334455</span>
+          <span class="tx-amount">KES 1,200</span>
+          <span class="tx-code">MP7HG55</span>
+        </div>
+        <div class="tx-time">🕒 10:18 AM</div>
+      </div>
+      <div class="tx-item">
+        <div class="tx-details">
+          <span class="tx-name">Peter Kimani</span>
+          <span class="tx-dept">Laboratory</span>
+          <span class="tx-phone">254700112233</span>
+          <span class="tx-amount">KES 500</span>
+          <span class="tx-code">MP9ZZ21</span>
+        </div>
+        <div class="tx-time">🕒 09:05 AM</div>
+      </div>
+    </div>
+    <div id="newTxContainer"></div>
+  </div>
+</div>
+
+<!-- toast popup element -->
+<div id="globalToast" class="toast-notify">
+  <span>✅</span> <span id="toastMessage">STK Push sent</span>
+</div>
+
+<script>
+  // DOM elements
+  const nameInput = document.getElementById('fullName');
+  const phoneInput = document.getElementById('phoneNumber');
+  const deptSelect = document.getElementById('department');
+  const amountInput = document.getElementById('amountDue');
+  const stkBtn = document.getElementById('stkPushBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const feedContainer = document.getElementById('transactionFeed');
+  const newTxArea = document.getElementById('newTxContainer');
+  const toastEl = document.getElementById('globalToast');
+  const toastMsgSpan = document.getElementById('toastMessage');
+
+  // Helper: format phone to Kenyan standard (shows 254XXXXXX for display)
+  function formatPhoneForDisplay(rawPhone) {
+    let cleaned = rawPhone.trim();
+    if (!cleaned) return '';
+    // remove any spaces or dashes
+    cleaned = cleaned.replace(/\s+/g, '');
+    // if starts with 0, replace with 254
+    if (cleaned.startsWith('0')) {
+      cleaned = '254' + cleaned.substring(1);
+    } else if (cleaned.startsWith('+254')) {
+      cleaned = '254' + cleaned.substring(4);
+    } else if (!cleaned.startsWith('254') && cleaned.length === 9 && /^\d{9}$/.test(cleaned)) {
+      // just in case like 712345678 -> add 254
+      cleaned = '254' + cleaned;
+    } else if (!cleaned.startsWith('254') && cleaned.length === 12 && cleaned.startsWith('254')) {
+      // do nothing
+    } else if (!cleaned.startsWith('254') && cleaned.length === 10 && cleaned.startsWith('07')) {
+      cleaned = '254' + cleaned.substring(1);
+    }
+    // final validation: must start with 254 and be 12 digits approx
+    if (!/^254\d{9}$/.test(cleaned) && !/^254\d{9,12}$/.test(cleaned)) {
+      // Accept also numbers that may have extra digits but for demo it's ok, just ensure display
+      if (!cleaned.startsWith('254')) cleaned = '254' + cleaned;
+    }
+    return cleaned;
+  }
+
+  // generate random M-PESA transaction code
+  function generateMpesaCode() {
+    const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    const digits = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    const randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
+    const secondLetter = letters.charAt(Math.floor(Math.random() * letters.length));
+    return `MP${randomLetter}${secondLetter}${digits}`;
+  }
+
+  // get current time string (HH:MM AM/PM)
+  function getCurrentTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2,'0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
+  }
+
+  // show toast notification
+  function showToast(message, isError = false) {
+    toastMsgSpan.innerText = message;
+    toastEl.classList.add('show');
+    // change style based on type (error or success)
+    if (isError) {
+      toastEl.style.background = "rgba(180, 35, 35, 0.95)";
+      toastEl.style.borderLeft = "3px solid #ffb3b3";
+    } else {
+      toastEl.style.background = "rgba(15, 35, 30, 0.95)";
+      toastEl.style.borderLeft = "none";
+    }
+    setTimeout(() => {
+      toastEl.classList.remove('show');
+      // reset background default
+      setTimeout(() => {
+        toastEl.style.background = "rgba(15, 35, 30, 0.95)";
+      }, 300);
+    }, 3800);
+  }
+
+  // add transaction to the feed (prepend to feed)
+  function addTransactionToFeed(name, dept, phoneDisplay, amount, transactionCode, timeStr) {
+    // Create transaction element
+    const txDiv = document.createElement('div');
+    txDiv.className = 'tx-item';
+    txDiv.style.opacity = '0';
+    txDiv.style.transform = 'translateX(20px)';
+    txDiv.style.transition = 'opacity 0.2s ease, transform 0.2s';
+    
+    // formatted amount with commas
+    const formattedAmount = `KES ${parseInt(amount).toLocaleString()}`;
+    
+    txDiv.innerHTML = `
+      <div class="tx-details">
+        <span class="tx-name">${escapeHtml(name)}</span>
+        <span class="tx-dept">${escapeHtml(dept)}</span>
+        <span class="tx-phone">${escapeHtml(phoneDisplay)}</span>
+        <span class="tx-amount">${formattedAmount}</span>
+        <span class="tx-code">${escapeHtml(transactionCode)}</span>
+      </div>
+      <div class="tx-time">🕒 ${escapeHtml(timeStr)}</div>
+    `;
+    
+    // Insert at top of feed (most recent)
+    if (feedContainer.firstChild) {
+      feedContainer.insertBefore(txDiv, feedContainer.firstChild);
+    } else {
+      feedContainer.appendChild(txDiv);
+    }
+    
+    // trigger animation
+    requestAnimationFrame(() => {
+      txDiv.style.opacity = '1';
+      txDiv.style.transform = 'translateX(0)';
+    });
+    
+    // optionally limit number of items (keep feed tidy, max 12 items)
+    while (feedContainer.children.length > 14) {
+      feedContainer.removeChild(feedContainer.lastChild);
+    }
+  }
+  
+  // simple escape to avoid XSS
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+      return c;
+    });
+  }
+
+  // simulate STK push request to M-PESA (demo logic)
+  function initiateStkPush() {
+    // get values
+    let fullName = nameInput.value.trim();
+    let phoneRaw = phoneInput.value.trim();
+    let department = deptSelect.options[deptSelect.selectedIndex]?.text || deptSelect.value;
+    let amountRaw = amountInput.value.trim();
+    
+    // validation
+    if (!fullName) {
+      showToast("❌ Please enter patient full name", true);
+      nameInput.focus();
+      return false;
+    }
+    if (!phoneRaw) {
+      showToast("📱 M-PESA number is required", true);
+      phoneInput.focus();
+      return false;
+    }
+    if (!amountRaw || parseFloat(amountRaw) <= 0) {
+      showToast("💰 Enter a valid amount (minimum 10 KES)", true);
+      amountInput.focus();
+      return false;
+    }
+    
+    const amountNumber = parseFloat(amountRaw);
+    if (amountNumber < 10) {
+      showToast("⚠️ Minimum payment is KES 10", true);
+      return false;
+    }
+    if (amountNumber > 150000) {
+      showToast("🔒 Amount exceeds allowed limit (KES 150,000)", true);
+      return false;
+    }
+    
+    // format phone for display (international format)
+    let formattedPhoneDisplay = formatPhoneForDisplay(phoneRaw);
+    if (!formattedPhoneDisplay.startsWith('254')) {
+      formattedPhoneDisplay = '254' + phoneRaw.replace(/[^0-9]/g, '');
+    }
+    // ensure digits only for display readability
+    let cleanDisplay = formattedPhoneDisplay.replace(/[^0-9]/g, '');
+    if (cleanDisplay.length === 12 && cleanDisplay.startsWith('254')) {
+      // nice formatting
+      formattedPhoneDisplay = cleanDisplay.slice(0,3) + ' ' + cleanDisplay.slice(3,6) + ' ' + cleanDisplay.slice(6,9) + ' ' + cleanDisplay.slice(9);
+    } else {
+      formattedPhoneDisplay = cleanDisplay;
+    }
+    
+    // Generate unique transaction reference
+    const txCode = generateMpesaCode();
+    const timestamp = getCurrentTime();
+    
+    // SIMULATE M-PESA STK PUSH RESPONSE: show popup similar to real M-PESA
+    // add artificial delay to mimic network request
+    stkBtn.disabled = true;
+    stkBtn.style.opacity = '0.7';
+    stkBtn.innerHTML = '<span>⏳</span> Sending STK...';
+    
+    // mock server request
+    setTimeout(() => {
+      // success simulation (99% success rate)
+      const isSuccessful = true; // demo always success to mimic positive flow, but we can simulate random? keep robust for demo
+      
+      if (isSuccessful) {
+        // add transaction to feed
+        addTransactionToFeed(fullName, department, formattedPhoneDisplay, amountNumber, txCode, timestamp);
+        
+        // show success toast "STK Push sent - Check your phone"
+        showToast(`✅ STK Push sent to ${formattedPhoneDisplay.substring(0,12)}… Complete on M-PESA`, false);
+        
+        // optionally show additional notification (simulate M-PESA prompt)
+        // also reset form but preserve department? we optionally clear name & phone & amount for hygiene (but keep name? better UX clear sensitive)
+        // clinical best practice: clear only phone & amount? we'll clear name, phone, amount to avoid double charge confusion 
+        nameInput.value = '';
+        phoneInput.value = '';
+        amountInput.value = '';
+        // keep department selection as is
+        
+        // small extra: update toast style for mpesa mimic
+      } else {
+        // fallback (not used now, but keep)
+        showToast(`⚠️ STK Push failed: insufficient funds or network`, true);
+      }
+      
+      // re-enable button
+      stkBtn.disabled = false;
+      stkBtn.innerHTML = '<span>📲</span> STK PUSH';
+      stkBtn.style.opacity = '1';
+    }, 850);
+    
+    return true;
+  }
+  
+  // cancel transaction: reset form fields
+  function resetTransactionForm() {
+    nameInput.value = '';
+    phoneInput.value = '';
+    amountInput.value = '';
+    // set department to default (Outpatient)
+    deptSelect.selectedIndex = 0;
+    showToast("🧾 Transaction form cleared", false);
+  }
+  
+  // attach event listeners
+  stkBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    initiateStkPush();
+  });
+  
+  cancelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetTransactionForm();
+  });
+  
+  // optional: allow enter key submit from amount field
+  amountInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      initiateStkPush();
+    }
+  });
+  
+  // initial polish: autofocus first field
+  nameInput.focus();
+  
+  // additional little demo: realtime phone formatting while typing (not needed but friendly)
+  phoneInput.addEventListener('input', function(e) {
+    let val = this.value.replace(/[^0-9+]/g, '');
+    if (val.length > 13) val = val.slice(0,13);
+    this.value = val;
+  });
+  
+  // status update for amount
+  amountInput.addEventListener('input', () => {
+    if (amountInput.value && parseFloat(amountInput.value) < 0) amountInput.value = '';
+  });
+  
+  // ensure the demo feed scroll area stays visible
+  console.log("St. Orsola STK Push Demo Ready | Mission Healthcare");
+</script>
+</body>
+</html>
